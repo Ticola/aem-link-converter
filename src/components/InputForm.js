@@ -59,7 +59,7 @@ const InputForm = () => {
         }
       } else {
         // If there is no pathname, just append '/index.html' to point to the home page
-        newUrl += '/en_us.html';
+        newUrl += '.html';
       }
     } else {
       throw new Error('URL does not match expected patterns for conversion.');
