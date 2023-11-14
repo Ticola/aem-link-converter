@@ -44,16 +44,25 @@ const InputForm = () => {
   
       if (!brandPath) throw new Error('Brand not recognized.');
   
-      // Convert the URL based on the host map and brand path
-      let newUrl = '';
-      if (hostMap[subdomain]) {
-        newUrl = `${hostMap[subdomain]}/editor.html/content/${brandPath}${parser.pathname}`;
+    // Convert the URL based on the host map and brand path
+    let newUrl = '';
+    if (hostMap[subdomain]) {
+      // Construct the new URL
+      newUrl = `${hostMap[subdomain]}/editor.html/content/${brandPath}`;
+
+      // Check if the path is root or only has one '/', append '.html'
+      if (parser.pathname === '/' || !parser.pathname.slice(1).includes('/')) {
+        newUrl += '.html';
       } else {
-        // If the subdomain is not in the hostMap, return the original URL or an error message
-        throw new Error('URL does not match expected patterns for conversion.');
+        // Otherwise, append the existing path and ensure it ends with '.html'
+        const pathWithHtml = parser.pathname.endsWith('.html') ? parser.pathname : `${parser.pathname}.html`;
+        newUrl += pathWithHtml;
       }
-  
-      return newUrl;
+    } else {
+      throw new Error('URL does not match expected patterns for conversion.');
+    }
+
+    return newUrl;
     } catch (error) {
       console.error(error.message);
       // Return null or an indication that the URL conversion failed
