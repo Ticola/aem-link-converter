@@ -22,8 +22,12 @@ The app currently supports the following brands and their associated development
 - JennAir
 - Swash
 
-## Built With
+## Technologies Used
 
-React - The web framework used.
-Tailwind CSS - For styling components.
-Vercel - Preferred platform for deployment.
+- **Frontend**: The user interface is built with [React](https://reactjs.org/), providing a reactive and modular approach to UI development.
+- **Styling**: Utilizes [Tailwind CSS](https://tailwindcss.com/) for sleek, utility-first styling that is responsive and customizable.
+- **Deployment**: Hosted on [Vercel](https://vercel.com/), offering a seamless CI/CD pipeline, from git push to global deployment.
+
+## Usage
+
+Visit the deployed app on Vercel: [AEM Link Convert Live](https://aem-link-converter.vercel.app/)
