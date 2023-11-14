@@ -51,12 +51,15 @@ const InputForm = () => {
       newUrl = `${hostMap[subdomain]}/editor.html/content/${brandPath}`;
 
       // Check if the path is root or only has one '/', append '.html'
-      if (parser.pathname === '/' || !parser.pathname.slice(1).includes('/')) {
-        newUrl += '.html';
+      if (parser.pathname !== '/') {
+        newUrl += parser.pathname;
+        // If the pathname does not end with '.html', add it
+        if (!parser.pathname.endsWith('.html')) {
+          newUrl += '.html';
+        }
       } else {
-        // Otherwise, append the existing path and ensure it ends with '.html'
-        const pathWithHtml = parser.pathname.endsWith('.html') ? parser.pathname : `${parser.pathname}.html`;
-        newUrl += pathWithHtml;
+        // If there is no pathname, just append '/index.html' to point to the home page
+        newUrl += '/en_us.html';
       }
     } else {
       throw new Error('URL does not match expected patterns for conversion.');
